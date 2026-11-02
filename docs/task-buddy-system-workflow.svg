@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2360" viewBox="0 0 1600 2360" role="img" aria-labelledby="title description">
+  <title id="title">Task Buddy – System Workflow Diagram</title>
+  <desc id="description">A top-to-bottom swimlane flowchart showing account access, dashboard and task management, database storage, deadline classification, manual completion, duplicate-safe notifications, and repeated monitoring.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f172a" flood-opacity=".09"/></filter>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#172033}
+      .title{font-size:36px;font-weight:750;letter-spacing:-.5px}
+      .subtitle{font-size:16px;fill:#526078}
+      .laneTitle{font-size:17px;font-weight:700;letter-spacing:.5px}
+      .nodeTitle{font-size:16px;font-weight:700}
+      .body{font-size:13px;fill:#526078}
+      .small{font-size:12px;fill:#526078}
+      .branch{font-size:12px;font-weight:700;fill:#475569}
+      .user{fill:#eff6ff;stroke:#60a5fa;stroke-width:2}
+      .app{fill:#f5f3ff;stroke:#8b5cf6;stroke-width:2}
+      .db{fill:#ecfeff;stroke:#06b6d4;stroke-width:2}
+      .notify{fill:#fffbeb;stroke:#f59e0b;stroke-width:2}
+      .decision{fill:#fff;stroke:#64748b;stroke-width:2}
+      .terminal{fill:#e0f2fe;stroke:#0284c7;stroke-width:2}
+      .arrow{fill:none;stroke:#64748b;stroke-width:2.3;marker-end:url(#arrow)}
+      .autoArrow{fill:none;stroke:#7c3aed;stroke-width:2.4;marker-end:url(#arrow)}
+      .notifyArrow{fill:none;stroke:#d97706;stroke-width:2.4;marker-end:url(#arrow)}
+      .loop{fill:none;stroke:#2563eb;stroke-width:2.5;stroke-dasharray:8 6;marker-end:url(#arrow-blue)}
+    </style>
+  </defs>
+
+  <rect width="1600" height="2360" fill="#f8fafc"/>
+  <text x="800" y="56" text-anchor="middle" class="title">Task Buddy – System Workflow Diagram</text>
+  <text x="800" y="86" text-anchor="middle" class="subtitle">To-Do List System · Web application using Laravel (PHP), MySQL, HTML, CSS, and JavaScript</text>
+
+  <!-- Swimlanes -->
+  <rect x="30" y="116" width="350" height="2190" rx="18" fill="#eff6ff" stroke="#dbeafe"/>
+  <rect x="390" y="116" width="585" height="2190" rx="18" fill="#f5f3ff" stroke="#ede9fe"/>
+  <rect x="985" y="116" width="280" height="2190" rx="18" fill="#ecfeff" stroke="#cffafe"/>
+  <rect x="1275" y="116" width="295" height="2190" rx="18" fill="#fffbeb" stroke="#fef3c7"/>
+  <text x="205" y="148" text-anchor="middle" class="laneTitle" fill="#1d4ed8">USER</text>
+  <text x="682" y="148" text-anchor="middle" class="laneTitle" fill="#6d28d9">LARAVEL APPLICATION</text>
+  <text x="1125" y="148" text-anchor="middle" class="laneTitle" fill="#0e7490">MYSQL DATABASE</text>
+  <text x="1422" y="148" text-anchor="middle" class="laneTitle" fill="#b45309">NOTIFICATION SERVICE</text>
+
+  <!-- Authentication -->
+  <ellipse cx="205" cy="205" rx="100" ry="27" class="terminal" filter="url(#shadow)"/>
+  <text x="205" y="211" text-anchor="middle" class="nodeTitle">Start</text>
+  <path d="M205 232V255" class="arrow"/>
+  <rect x="65" y="258" width="280" height="88" rx="14" class="user" filter="url(#shadow)"/>
+  <text x="205" y="288" text-anchor="middle" class="nodeTitle">Register or Log In</text>
+  <text x="205" y="312" text-anchor="middle" class="body">Enter account details and credentials</text>
+  <text x="205" y="331" text-anchor="middle" class="small">User action</text>
+  <path d="M345 302H430" class="arrow"/>
+  <rect x="430" y="258" width="430" height="88" rx="14" class="app" filter="url(#shadow)"/>
+  <text x="645" y="288" text-anchor="middle" class="nodeTitle">Validate Credentials / Create Account</text>
+  <text x="645" y="312" text-anchor="middle" class="body">Laravel authenticates the user and applies validation</text>
+  <path d="M860 302H1015" class="arrow"/>
+  <path d="M1030 258H1205L1220 273V331L1205 346H1030L1015 331V273Z" class="db" filter="url(#shadow)"/>
+  <text x="1117" y="292" text-anchor="middle" class="nodeTitle">User Account</text>
+  <text x="1117" y="316" text-anchor="middle" class="body">Read / create record</text>
+  <path d="M1117 346V390H645V402" class="arrow"/>
+  <polygon points="645,402 770,470 645,538 520,470" class="decision" filter="url(#shadow)"/>
+  <text x="645" y="465" text-anchor="middle" class="nodeTitle">Credentials</text>
+  <text x="645" y="486" text-anchor="middle" class="nodeTitle">valid?</text>
+  <text x="649" y="560" class="branch">YES</text>
+  <path d="M645 538V590" class="arrow"/>
+  <text x="490" y="454" class="branch">NO</text>
+  <path d="M520 470H410V302H345" class="arrow"/>
+  <text x="424" y="438" class="small" transform="rotate(-90 424 438)">Show error; retry</text>
+
+  <!-- Dashboard -->
+  <rect x="430" y="590" width="430" height="100" rx="14" class="app" filter="url(#shadow)"/>
+  <text x="645" y="622" text-anchor="middle" class="nodeTitle">Load Dashboard Summary</text>
+  <text x="645" y="647" text-anchor="middle" class="body">Count upcoming, due today, overdue, and completed tasks</text>
+  <text x="645" y="669" text-anchor="middle" class="small">Completed means manually marked by the user</text>
+  <path d="M860 640H1015" class="arrow"/>
+  <path d="M1030 590H1205L1220 605V675L1205 690H1030L1015 675V605Z" class="db" filter="url(#shadow)"/>
+  <text x="1117" y="625" text-anchor="middle" class="nodeTitle">Read Tasks</text>
+  <text x="1117" y="650" text-anchor="middle" class="body">User's task records</text>
+  <path d="M1015 660H925V706H345" class="arrow"/>
+  <path d="M205 706V726" class="arrow"/>
+  <rect x="65" y="728" width="280" height="82" rx="14" class="user" filter="url(#shadow)"/>
+  <text x="205" y="758" text-anchor="middle" class="nodeTitle">View Dashboard</text>
+  <text x="205" y="783" text-anchor="middle" class="body">Review task summary and choose an action</text>
+
+  <!-- User task actions -->
+  <path d="M205 810V845" class="arrow"/>
+  <polygon points="205,845 330,910 205,975 80,910" class="decision" filter="url(#shadow)"/>
+  <text x="205" y="905" text-anchor="middle" class="nodeTitle">Create a</text>
+  <text x="205" y="926" text-anchor="middle" class="nodeTitle">task?</text>
+  <text x="214" y="996" class="branch">YES</text>
+  <path d="M205 975V1015" class="arrow"/>
+  <rect x="55" y="1018" width="300" height="135" rx="14" class="user" filter="url(#shadow)"/>
+  <text x="205" y="1048" text-anchor="middle" class="nodeTitle">Enter Task Details</text>
+  <text x="205" y="1073" text-anchor="middle" class="body">Title, description, category,</text>
+  <text x="205" y="1093" text-anchor="middle" class="body">due date, and due time</text>
+  <text x="205" y="1125" text-anchor="middle" class="small">User action</text>
+
+  <text x="342" y="900" class="branch">NO</text>
+  <path d="M330 910H365V1195H355" class="arrow"/>
+  <rect x="55" y="1198" width="300" height="130" rx="14" class="user" filter="url(#shadow)"/>
+  <text x="205" y="1228" text-anchor="middle" class="nodeTitle">Manage Existing Tasks</text>
+  <text x="205" y="1253" text-anchor="middle" class="body">View, edit, update, manually mark</text>
+  <text x="205" y="1273" text-anchor="middle" class="body">as completed, or delete</text>
+  <text x="205" y="1303" text-anchor="middle" class="small">User action</text>
+
+  <!-- Validate and save -->
+  <path d="M355 1085H430" class="arrow"/>
+  <rect x="430" y="1038" width="430" height="95" rx="14" class="app" filter="url(#shadow)"/>
+  <text x="645" y="1071" text-anchor="middle" class="nodeTitle">Validate Task Fields</text>
+  <text x="645" y="1096" text-anchor="middle" class="body">Check required title, category ownership, and date/time</text>
+  <path d="M645 1133V1170" class="arrow"/>
+  <polygon points="645,1170 765,1235 645,1300 525,1235" class="decision" filter="url(#shadow)"/>
+  <text x="645" y="1231" text-anchor="middle" class="nodeTitle">Information</text>
+  <text x="645" y="1252" text-anchor="middle" class="nodeTitle">valid?</text>
+  <text x="774" y="1224" class="branch">YES</text>
+  <path d="M765 1235H1015" class="arrow"/>
+  <path d="M1030 1188H1205L1220 1203V1267L1205 1282H1030L1015 1267V1203Z" class="db" filter="url(#shadow)"/>
+  <text x="1117" y="1222" text-anchor="middle" class="nodeTitle">Save Task</text>
+  <text x="1117" y="1247" text-anchor="middle" class="body">Insert / update MySQL record</text>
+  <text x="514" y="1224" class="branch">NO</text>
+  <path d="M525 1235H395V1175H355V1153" class="arrow"/>
+  <text x="404" y="1208" class="small">Show validation errors</text>
+  <path d="M1117 1282V1342H645" class="arrow"/>
+  <rect x="430" y="1345" width="430" height="72" rx="14" class="app" filter="url(#shadow)"/>
+  <text x="645" y="1375" text-anchor="middle" class="nodeTitle">Confirm Save and Refresh Dashboard</text>
+  <text x="645" y="1398" text-anchor="middle" class="body">New tasks start unfinished; completion is never automatic</text>
+  <path d="M430 1380H380V769H345" class="arrow"/>
+  <text x="392" y="1085" class="small" transform="rotate(-90 392 1085)">Return to dashboard</text>
+
+  <!-- Scheduled deadline monitoring -->
+  <rect x="430" y="1440" width="430" height="90" rx="14" class="app" filter="url(#shadow)"/>
+  <text x="645" y="1473" text-anchor="middle" class="nodeTitle">Run Scheduled Deadline Monitor</text>
+  <text x="645" y="1498" text-anchor="middle" class="body">Laravel scheduler checks unfinished tasks at configured intervals</text>
+  <path d="M860 1485H1015" class="autoArrow"/>
+  <path d="M1030 1440H1205L1220 1455V1515L1205 1530H1030L1015 1515V1455Z" class="db" filter="url(#shadow)"/>
+  <text x="1117" y="1474" text-anchor="middle" class="nodeTitle">Read Task Deadlines</text>
+  <text x="1117" y="1499" text-anchor="middle" class="body">Read status, due date/time, and reminder log</text>
+
+  <!-- Completion decision and status classification -->
+  <path d="M1015 1500H930V1580H765" class="arrow"/>
+  <polygon points="645,1518 765,1580 645,1642 525,1580" class="decision" filter="url(#shadow)"/>
+  <text x="645" y="1576" text-anchor="middle" class="nodeTitle">User marked</text>
+  <text x="645" y="1597" text-anchor="middle" class="nodeTitle">completed?</text>
+  <text x="778" y="1570" class="branch">YES</text>
+  <rect x="790" y="1538" width="145" height="84" rx="14" class="app"/>
+  <text x="862" y="1571" text-anchor="middle" class="nodeTitle">Completed</text>
+  <text x="862" y="1595" text-anchor="middle" class="small">Stop checks</text>
+  <text x="647" y="1662" class="branch">NO</text>
+  <path d="M645 1642V1682" class="autoArrow"/>
+  <polygon points="645,1682 765,1747 645,1812 525,1747" class="decision" filter="url(#shadow)"/>
+  <text x="645" y="1743" text-anchor="middle" class="nodeTitle">Current date/time</text>
+  <text x="645" y="1764" text-anchor="middle" class="nodeTitle">past deadline?</text>
+  <text x="774" y="1739" class="branch">YES</text>
+  <path d="M765 1747H815" class="autoArrow"/>
+  <rect x="815" y="1710" width="145" height="76" rx="14" fill="#fff1f2" stroke="#fb7185" stroke-width="2" filter="url(#shadow)"/>
+  <text x="887" y="1742" text-anchor="middle" class="nodeTitle" fill="#be123c">Overdue</text>
+  <text x="887" y="1764" text-anchor="middle" class="small">Unfinished task</text>
+  <text x="645" y="1832" class="branch">NO</text>
+  <path d="M645 1812V1850" class="autoArrow"/>
+  <polygon points="645,1850 765,1915 645,1980 525,1915" class="decision" filter="url(#shadow)"/>
+  <text x="645" y="1911" text-anchor="middle" class="nodeTitle">Due date is</text>
+  <text x="645" y="1932" text-anchor="middle" class="nodeTitle">today?</text>
+  <text x="774" y="1907" class="branch">YES</text>
+  <path d="M765 1915H815" class="autoArrow"/>
+  <rect x="815" y="1878" width="145" height="76" rx="14" class="app" filter="url(#shadow)"/>
+  <text x="887" y="1910" text-anchor="middle" class="nodeTitle">Due Today</text>
+  <text x="887" y="1932" text-anchor="middle" class="small">Still unfinished</text>
+  <text x="645" y="2000" class="branch">NO</text>
+  <path d="M645 1980V2025H815" class="autoArrow"/>
+  <rect x="815" y="1988" width="145" height="76" rx="14" class="app" filter="url(#shadow)"/>
+  <text x="887" y="2020" text-anchor="middle" class="nodeTitle">Upcoming</text>
+  <text x="887" y="2042" text-anchor="middle" class="small">Future deadline</text>
+
+  <!-- Overdue notification path -->
+  <path d="M960 1748H1295" class="notifyArrow"/>
+  <polygon points="1418,1688 1535,1750 1418,1812 1301,1750" class="decision" filter="url(#shadow)"/>
+  <text x="1418" y="1745" text-anchor="middle" class="nodeTitle">Email/SMS</text>
+  <text x="1418" y="1766" text-anchor="middle" class="nodeTitle">configured?</text>
+  <text x="1309" y="1738" class="branch">NO</text>
+  <path d="M1301 1750H1245V2088H960" class="notifyArrow"/>
+  <text x="1253" y="1892" class="small" transform="rotate(-90 1253 1892)">Skip notification; continue monitoring</text>
+  <text x="1422" y="1832" class="branch">YES</text>
+  <path d="M1418 1812V1840H1117V1860" class="notifyArrow"/>
+  <path d="M1030 1860H1205L1220 1875V1935L1205 1950H1030L1015 1935V1875Z" class="db" filter="url(#shadow)"/>
+  <text x="1117" y="1893" text-anchor="middle" class="nodeTitle">Check Reminder Log</text>
+  <text x="1117" y="1918" text-anchor="middle" class="small">Task + reminder window</text>
+  <path d="M1117 1950V1971" class="notifyArrow"/>
+  <polygon points="1117,1971 1225,2028 1117,2085 1009,2028" class="decision" filter="url(#shadow)"/>
+  <text x="1117" y="2024" text-anchor="middle" class="nodeTitle">Already sent for</text>
+  <text x="1117" y="2045" text-anchor="middle" class="nodeTitle">this reminder window?</text>
+  <text x="1233" y="2020" class="branch">YES</text>
+  <path d="M1225 2028H1278V2088H1265" class="notifyArrow"/>
+  <rect x="1290" y="2054" width="245" height="72" rx="14" class="notify" filter="url(#shadow)"/>
+  <text x="1412" y="2083" text-anchor="middle" class="nodeTitle">Skip Duplicate</text>
+  <text x="1412" y="2105" text-anchor="middle" class="small">No repeated reminder</text>
+  <text x="1117" y="2104" class="branch">NO</text>
+  <path d="M1117 2085V2145H1290" class="notifyArrow"/>
+  <rect x="1290" y="2148" width="245" height="82" rx="14" class="notify" filter="url(#shadow)"/>
+  <text x="1412" y="2178" text-anchor="middle" class="nodeTitle">Send Email or SMS</text>
+  <text x="1412" y="2202" text-anchor="middle" class="body">To registered address/number</text>
+  <text x="1412" y="2220" text-anchor="middle" class="small">Configured provider required</text>
+  <path d="M1290 2188H1218V2240H1117V2250" class="notifyArrow"/>
+  <path d="M1030 2250H1205L1220 2265V2290L1205 2305H1030L1015 2290V2265Z" class="db" filter="url(#shadow)"/>
+  <text x="1117" y="2278" text-anchor="middle" class="nodeTitle">Record Reminder Sent</text>
+  <text x="1117" y="2297" text-anchor="middle" class="small">Prevents duplicate sends</text>
+
+  <!-- Repeat scheduler loop and user session end -->
+  <path d="M960 2026H980V2325H870V1485H860" class="loop"/>
+  <text x="967" y="2170" class="small" transform="rotate(-90 967 2170)" fill="#1d4ed8">Repeat monitoring on the next scheduled run</text>
+  <path d="M205 1328V2164" class="arrow"/>
+  <ellipse cx="205" cy="2195" rx="123" ry="30" class="terminal" filter="url(#shadow)"/>
+  <text x="205" y="2201" text-anchor="middle" class="nodeTitle">End: User Logs Out</text>
+
+  <!-- Legend -->
+  <rect x="55" y="2260" width="890" height="40" rx="12" fill="#fff" stroke="#cbd5e1"/>
+  <rect x="75" y="2272" width="18" height="16" rx="4" class="user"/><text x="101" y="2285" class="small">User action</text>
+  <rect x="220" y="2272" width="18" height="16" rx="4" class="app"/><text x="246" y="2285" class="small">Laravel process</text>
+  <path d="M370 2280H410" class="arrow"/><text x="418" y="2285" class="small">Data / control flow</text>
+  <polygon points="588,2272 604,2280 588,2288 572,2280" class="decision"/><text x="612" y="2285" class="small">Decision</text>
+  <rect x="700" y="2272" width="18" height="16" rx="4" class="db"/><text x="726" y="2285" class="small">Database</text>
+  <rect x="815" y="2272" width="18" height="16" rx="4" class="notify"/><text x="841" y="2285" class="small">Notification service</text>
+
+  <text x="800" y="2335" text-anchor="middle" class="small">Reminder delivery depends on configured email/SMS credentials and a scheduled Laravel task. Completion is always a user action.</text>
+</svg>
